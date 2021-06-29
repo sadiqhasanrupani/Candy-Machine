@@ -1,85 +1,96 @@
-//Writing a program to Create a Candy Machine, in that we are going to sell the Candy, Chips, Gum and Cookies.
 #include<iostream>
 using namespace std;
 class candy_machine{
     public:
         int candy, chips, gum, cookies, select, qty, n;
-        int p_bill /*product for each bill */, total_bill;
+        int candy_p_bill, chips_p_bill, gum_p_bill, cookie_p_bill , total_bill , candy_qty, chips_qty, gum_qty, cookie_qty;
+
         candy_machine(){
             candy = 0 ;
-            chips = 0 ;
+            chips = 0 ; 
             gum = 0 ;
-            cookies = 0;
-            total_bill = 0;
-            p_bill = 0;
-        }
-        void order(){
-            cout<<"\n Avaliable Products are: "<<endl<< "1. Candy"<<endl<< "2. Chips"<<endl<< "3. gum"<<endl<< "4. Cookies"<<endl; //Displaying Avaliable Products.
-
-            cout<<"\n How many time do you want to Purchase a product: ";
-            cin>>n;
-            for (int i = 1 ; i <= n ; i++){
-            
-            cout<<"\n Please Select the Option of the Product id to be Purchased: "<<endl;
-            cin>>select;
-
-            switch (select)
-            {
-
-            case 1: cout<<"\n The price of the Candy is: 50 Rupees. " << endl<< " How much Quantity do you want for Candy: "; // Displayed Ordered Quantity Product with Quantity.
-                    cin>>qty;
-                    
-                    cout<<"\n you choose the Quantity for the candy is: "<<qty;
-
-                    p_bill = 50 * qty;
-
-                    cout<<"\n Total bill for your Candy is: "<<p_bill;  //Produnt Wise Bills.
-                    break;
-
-            case 2: cout<<"\n The price of the Chips: 48 Rupees." << endl << " How much Quantity do you want for Chips: ";
-                    cin>>qty;
-                    
-                    cout<<"\n you choose the Quantity for the candy is: "<<qty<<endl;
-
-                    p_bill = 48 * qty;
-
-                    cout<<"\n Total bill for your Chips is: " << p_bill<<endl; //Second product Bill.
-                    break;
-
-            case 3: cout<<"\n The price of the Gum is: 78 Rupees. " << endl << " How much Quantity do you want for Gum: ";
-                    cin>>qty;
-
-                    cout<<"\n you choose the Quantity for the candy is: "<<qty<<endl;
-
-                    p_bill = 78 * qty;
-
-                    cout<<"\n Total bill for your Gum is: "<<p_bill<<endl;  //Third Product Bill.
-                    break;
-            
-            case 4: cout<<"\n The price of the Cookies is: 100 Rupees " << endl << " How much Quantity do you want for Cookies: ";
-                    cin>>qty;
-
-                    cout<<"\n you choose the Quantity for the candy is: "<<qty<<endl;
-
-                    p_bill = 100 * qty;
-
-                    cout<<"\n Total bill for your Cookie is: "<<p_bill<<endl;   //Fourth Product Bill.
-                    break;
-            
-            default: cout<<"\n Please Select Valid Option!!!";
-                break;
-                }
-                total_bill = total_bill + p_bill;
-            }
-            cout<<"\n The Total bill for you Purchased Products are: "<<total_bill; //Total Billing After buying the Products.
-            
+            cookies = 0 ;
+            total_bill = 0 ;
         }
 
+        void ava_product();
+        void order_product();
+        void display_goods();
+        void total_product_bill();
 };
 
-int main(){
-    candy_machine cm;   //Object of the Candy Machine.
+void candy_machine :: ava_product(){
+    cout<<"\n Avaliable Products are: "<<endl<< " 1. Candy" << endl<< " 2. Chips"<<endl<< " 3. Gum"<<endl<<" 4. Cookies."<<endl;
 
-    cm.order();
-    return 0;   //End of the program.
+}
+
+void candy_machine :: order_product(){
+    cout<<"\n How many times do you want to Purchase a product: ";
+    cin>>n;
+
+    for (int i = 1; i <= n ; i++){
+        cout<<"\n Please Select the Option of the Product Number to be Purchased: ";
+        cin>>select;
+
+    switch(select){
+        case 1:
+            cout<<"\n The price of the Candy is 45 " <<endl<<" So How much Quantity do you want for this Candy? "<<endl<< " -> ";
+            cin>>candy_qty;
+
+            candy_p_bill = 45 * candy_qty;
+
+            break;
+        case 2:
+            cout<<"\n The Price of the Chips is 89 "<<endl<<" So How much Quantity do you want for this Chips? "<<endl<<" -> ";
+            cin>>chips_qty;
+
+            chips_p_bill = 89 * chips_qty;
+            break;
+
+        case 3:
+            cout<<"\n The Price of the Gum is 87 "<<endl<<" So How much Quantity do you wnat for this Gum? "<<endl<<" -> ";
+            cin>>gum_qty;
+
+            gum_p_bill = 87 * gum_qty;
+            break;
+
+        case 4:
+            cout<<"\n The Price of the Cookies is 100 "<<endl<< " So How much Quantity do you want for this Cookies? "<<endl<< " -> ";
+            cin>>cookie_qty;
+
+            cookie_p_bill = 100 * cookie_qty;
+        }
+    }
+}
+void candy_machine :: display_goods(){
+    cout<<"\n QTY \t\t\t PRICE \t\t\t DESCRIPTION \t\t\t\t\t\t TOTAL"<<endl;
+
+    if(candy_qty > 0){
+    cout<<"\n "<<candy_qty<<"  \t\t\t 45 \t\t\t Candy \t\t\t\t\t\t\t "<<candy_p_bill;
+    }
+    if(chips_qty > 0){
+        cout<<"\n "<<chips_qty<<" \t\t\t 89 \t\t\t Chips \t\t\t\t\t\t\t "<<chips_p_bill;
+    }
+    if(gum_qty > 0){
+        cout<<"\n "<<gum_qty<<" \t\t\t 87 \t\t\t Gum \t\t\t\t\t\t\t "<<gum_p_bill;
+    }
+    if(cookie_qty > 0){
+        cout<<"\n "<<cookie_qty <<" \t\t\t 100 \t\t\t Cookie \t\t\t\t\t\t "<<cookie_p_bill<<endl;
+    }
+    cout<<"\n Total Purchase \t\t\t\t\t\t\t\t\t\t\t "<<total_bill;
+}
+
+void candy_machine :: total_product_bill(){
+    total_bill = candy_p_bill + chips_p_bill + gum_p_bill + cookie_p_bill;
+}
+
+int main(){
+    candy_machine cm;
+    cm.ava_product();
+    cm.order_product();
+    cm.total_product_bill();
+    cm.display_goods();
+
+    cout<<endl<<" \n\n\t\t\t\t\t\t Thanks For your Purchase :)";
+    return 0;
 }
