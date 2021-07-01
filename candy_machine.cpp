@@ -11,6 +11,14 @@ class candy_machine{
             gum = 0 ;
             cookies = 0 ;
             total_bill = 0 ;
+            candy_qty = 0;
+            chips_qty = 0;
+            gum_qty = 0;
+            cookie_qty = 0;
+            candy_p_bill = 0;
+            chips_p_bill = 0;
+            gum_p_bill =0;
+            cookie_p_bill = 0;
         }
 
         void ava_product();
@@ -59,6 +67,11 @@ void candy_machine :: order_product(){
             cin>>cookie_qty;
 
             cookie_p_bill = 100 * cookie_qty;
+            break;
+        
+        default:
+            cout<<"\n There are no such Options, Please Try Again.";
+            break;
         }
     }
 }
